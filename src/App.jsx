@@ -67,7 +67,7 @@ export default function App() {
           </ul>
           <Hr />
           <Subtitle>ADICIONAR ELEMENTO</Subtitle>
-          <section className="flex flex-col gap-3 mt-3">
+          <section className="flex flex-col gap-3 mt-3 md:mb-0 mb-10">
             <Input type="text" name="Nome" placeholder="Ex: Vendas" ref={nameRef} />
             <Input type="number" name="%" placeholder="Ex: 30" ref={percentRef} />
             <Input type="color" name="Cor" ref={colorRef} />
