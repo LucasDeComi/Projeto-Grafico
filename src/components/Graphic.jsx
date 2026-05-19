@@ -10,13 +10,13 @@ export default function Graphic({elements, style, total}) {
         count = end;
         return `${element.color} ${start}% ${end}%`
     }).join(", ");
-  });
+  }, [elements, total]);
   
   return (
     <div className="relative w-100 h-100 rounded-full"
         style={{
         background: `conic-gradient(
-            ${gradient}
+            ${gradient !== "" ? gradient : "#252525 0% 100%"}
         )`
         }}>
 
