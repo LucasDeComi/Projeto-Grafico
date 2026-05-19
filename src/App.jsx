@@ -42,16 +42,17 @@ export default function App() {
 
   return (
     <>
-      <div className="flex w-screen h-screen bg-[#1a1a1a]">
-        <main className="flex flex-col gap-8 px-10 justify-center items-center h-full w-full">
+      <div className="flex flex-col md:flex-row w-screen h-screen bg-[#1a1a1a]">
+        <main className="flex md:flex-col md:gap-8 md:px-10 py-10 md:py-0 justify-around md:justify-center items-center h-[50%] md:h-full w-full">
           <Graphic elements={elements} style={style} total={total} />
-          <ul className="flex flex-wrap justify-center list-none gap-5">
+          <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-center max-h-full overflow-y-scroll list-none gap-3 md:gap-5 md:py-5">
             {elements && elements.map(element => (
               <GraphicElement element={element} total={total} />
             ))}
           </ul>
         </main>
-        <aside className="w-[40%] min-w-85 h-full px-5 py-10 border-l-2 border-l-[#2E2E2E]">
+        <aside className="md:w-[40%] md:min-w-85 h-[50%] md:h-full overflow-y-scroll px-3 md:px-5 py-5 md:py-10
+          md:border-l-2 md:border-l-[#2E2E2E] border-t-2 border-t-[#2E2E2E]">
           <Subtitle>TIPO DE GRÁFICO</Subtitle>
           <section className="flex gap-3 mt-3">
             <SelButton icon="donut.svg" onClick={() => setStyle("donut")} selected={style === "donut"}>Donut</SelButton>
@@ -59,7 +60,7 @@ export default function App() {
           </section>
           <Hr />
           <Subtitle>ELEMENTOS</Subtitle>
-          <ul className="flex flex-col list-none h-50 gap-2.5 mt-3 overflow-y-scroll">
+          <ul className="flex flex-col list-none h-32 md:h-50 gap-2.5 mt-3 overflow-y-scroll">
             {elements && elements.map(element => (
               <ListElement element={element} total={total} />
             ))}
@@ -71,9 +72,9 @@ export default function App() {
             <Input type="number" name="%" placeholder="Ex: 30" ref={percentRef} />
             <Input type="color" name="Cor" ref={colorRef} />
             <button onClick={() => add()}
-              className="text-center text-sm h-10 bg-[#252525] text-[#ccc] border border-[#3a3a3a] rounded-lg
+              className="text-center text-xs md:text-sm h-8 md:h-10 bg-[#252525] text-[#ccc] border border-[#3a3a3a] rounded-md md:rounded-lg
               transition-colors duration-200 hover:bg-[#2a2a2a] hover:border-[#444] active:bg-[#252525] active:border-[#3a3a3a]">
-              <span className="text-lg">+</span> Adicionar
+              <span className="text-[16px] md:text-lg">+</span> Adicionar
             </button>
           </section>
         </aside>

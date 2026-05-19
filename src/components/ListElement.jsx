@@ -23,18 +23,18 @@ export default function ListElement({element, total}) {
   }
 
   return (
-    <li className="flex justify-between items-center px-4 py-3 rounded-xl bg-[#222]">
+    <li className="flex justify-between items-center px-3 py-2 md:px-4 md:py-3 rounded-lg md:rounded-xl bg-[#222]">
         <div className="flex items-center gap-2">
             <span
-                className="flex w-3 h-3 rounded-full"
+                className="flex w-2 h-2 md:w-3 md:h-3 rounded-full"
                 style={{background: `${element.color}`}}
             />
-            <h3 className="text-[#ccc] text-sm">{element.name}</h3>
+            <h3 className="text-[#ccc] md:text-sm text-xs max-w-43 md:max-w-[150px] truncate">{element.name}</h3>
         </div>
         <div className="flex items-center gap-2">
-            <span className="text-[#888] text-md">{((element.parts / total) * 100).toFixed(2)}%</span>
+            <span className="text-[#888] text-xs md:text-[16px]">{((element.parts / total) * 100).toFixed(2)}%</span>
             <button onClick={() => remove()}
-                className="flex justify-center w-8 h-8 p-1.75 bg-[#2A2A2A] border border-[#3A3A3A] rounded-md
+                className="flex justify-center w-5 h-5 md:w-8 md:h-8 p-0.75 md:p-1.75 bg-[#2A2A2A] border border-[#3A3A3A] rounded-md
                 transition-colors duration-200 hover:bg-[#2F2F2F] hover:border-[#444]">
                 <span className="flex h-full w-px bg-[#666] rotate-45" />
                 <span className="flex h-full w-px bg-[#666] -translate-x-px rotate-135" />

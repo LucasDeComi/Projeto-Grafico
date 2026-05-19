@@ -13,14 +13,14 @@ export default function Graphic({elements, style, total}) {
   }, [elements, total]);
   
   return (
-    <div className="relative w-100 h-100 rounded-full"
+    <div className="relative w-50 h-50 lg:w-100 lg:h-100 rounded-full"
         style={{
         background: `conic-gradient(
             ${gradient !== "" ? gradient : "#252525 0% 100%"}
         )`
         }}>
 
-        {style === "donut" && (<div className="absolute inset-15 bg-[#1a1a1a] rounded-full" />)}
+        {style === "donut" && (<div className="absolute inset-9 lg:inset-15 bg-[#1a1a1a] rounded-full" />)}
     </div>
   )
 }
