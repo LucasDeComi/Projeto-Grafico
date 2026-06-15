@@ -15,6 +15,7 @@ export default function App() {
   const { nextColor } = useContext(ColorsContext);
 
   const [style, setStyle] = useState("donut");
+  const [animation, setAnimation] = useState(0);
 
   const total = useMemo(() => {
     return elements.reduce((acc, element) => acc + element.parts, 0) // Função que percorre o array e soma a um acumulador a quantidade de partes, que começa em 0
@@ -23,6 +24,11 @@ export default function App() {
   const nameRef = useRef();
   const percentRef= useRef();
   const colorRef = useRef();
+
+  function changeStyle(style) {
+    setStyle(style);
+    setAnimation(prev => prev + 1);
+  }
 
   function add() {
     const name = nameRef.current?.value;
@@ -44,7 +50,7 @@ export default function App() {
     <>
       <div className="flex flex-col md:flex-row w-screen h-screen bg-[#1a1a1a]">
         <main className="flex md:flex-col md:gap-8 md:px-10 py-10 md:py-0 justify-around md:justify-center items-center h-[50%] md:h-full w-full">
-          <Graphic elements={elements} style={style} total={total} />
+          <Graphic elements={elements} style={style} animation={animation} />
           <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-center max-h-full overflow-y-scroll list-none gap-3 md:gap-5 md:py-5">
             {elements && elements.map(element => (
               <GraphicElement element={element} total={total} />
@@ -55,8 +61,8 @@ export default function App() {
           md:border-l-2 md:border-l-[#2E2E2E] border-t-2 border-t-[#2E2E2E]">
           <Subtitle>TIPO DE GRÁFICO</Subtitle>
           <section className="flex gap-3 mt-3">
-            <SelButton icon="donut.svg" onClick={() => setStyle("donut")} selected={style === "donut"}>Donut</SelButton>
-            <SelButton icon="pizza.svg" onClick={() => setStyle("pizza")} selected={style === "pizza"}>Pizza</SelButton>
+            <SelButton icon="donut.svg" onClick={() => changeStyle("donut")} selected={style === "donut"}>Donut</SelButton>
+            <SelButton icon="pizza.svg" onClick={() => changeStyle("pizza")} selected={style === "pizza"}>Pizza</SelButton>
           </section>
           <Hr />
           <Subtitle>ELEMENTOS</Subtitle>

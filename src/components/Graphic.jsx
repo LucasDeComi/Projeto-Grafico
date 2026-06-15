@@ -1,26 +1,39 @@
-import { useMemo } from "react";
+import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts"
 
-export default function Graphic({elements, style, total}) {
-  
-  const gradient = useMemo(() => {
-    let count = 0;
-    return elements.map((element) => {
-        const start = count;
-        const end = start + (element.parts / total) * 100;
-        count = end;
-        return `${element.color} ${start}% ${end}%`
-    }).join(", ");
-  }, [elements, total]);
-  
+export default function Graphic({elements, style, animation}) {
+  const data = elements.map((element) => ({
+    name: element.name,
+    value: element.parts,
+    color: element.color
+  }));
+
   return (
-    <div className="relative w-50 h-50 lg:w-100 lg:h-100 rounded-full"
-        style={{
-        background: `conic-gradient(
-            ${gradient !== "" ? gradient : "#252525 0% 100%"}
-        )`
-        }}>
-
-        {style === "donut" && (<div className="absolute inset-9 lg:inset-15 bg-[#1a1a1a] rounded-full" />)}
+    <div className="relative w-50 h-50 lg:w-100 lg:h-100">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            key={animation} // Quando o valor de animation muda, a animação é executada, pois o componente é reconstruído
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius="100%"
+            innerRadius={style === "donut" ? "75%" : 0}
+            animationBegin={0}
+            animationDuration={1000}
+            animationEasing="ease"
+          >
+            {data.map((item, index) => (
+              <Cell
+                key={index}
+                fill={item.color}
+                strokeWidth={0}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   )
 }
